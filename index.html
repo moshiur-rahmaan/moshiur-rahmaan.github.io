@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Portfolio of Md. Moshiur Rahman, BRAC University alumnus, Flutter engineer and mobile app team lead.">
+<style>html{scroll-behavior:smooth}</style>
+<title>Moshiur Rahman Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a device-lab dashboard. Pulse-line hero, then sections that behave like instrument panels (timeline, matrix, signal map, case-study tabs). */
+:root{
+  --bg:#0a0f1c; --surface:#121a2c; --surface2:#182238; --line:#26324e;
+  --fg:#e8edf8; --muted:#95a2c0;
+  --pulse:#ff6b81; --blue:#5aa9ff; --teal:#3ed6b5; --amber:#ffc15a; --violet:#a78bfa;
+  --on-pulse:#1a0a10;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#f3f5fb; --surface:#ffffff; --surface2:#e9edf7; --line:#d2daec;
+    --fg:#0e1730; --muted:#4f5d7e;
+    --pulse:#d42a49; --blue:#1d6bcf; --teal:#0a8a74; --amber:#a56600; --violet:#6a40d6;
+    --on-pulse:#ffffff; color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#f3f5fb; --surface:#ffffff; --surface2:#e9edf7; --line:#d2daec;
+  --fg:#0e1730; --muted:#4f5d7e;
+  --pulse:#d42a49; --blue:#1d6bcf; --teal:#0a8a74; --amber:#a56600; --violet:#6a40d6;
+  --on-pulse:#ffffff; color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--f-body);margin:0;padding-inline:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:20px}
+section{padding-block:72px}
+.eyebrow{font:500 12px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+h2{font:800 clamp(28px,4.2vw,44px)/1.05 var(--f-display);letter-spacing:-.02em;margin:0 0 14px;text-wrap:balance}
+h3{font:600 20px/1.2 var(--f-display);margin:0}
+.lede{color:var(--muted);max-width:62ch;margin:0 0 36px}
+.mono{font-family:var(--f-mono)}
+.num{font-variant-numeric:tabular-nums}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:20px;height:56px}
+.logo{font:800 17px var(--f-display);letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
+.logo i{color:var(--pulse);font-style:normal}
+.bar nav{display:flex;gap:18px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.bar nav a{font:500 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--muted);white-space:nowrap}
+.bar nav a:hover{color:var(--fg)}
+.tbtn{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:15px;flex:none}
+
+/* hero */
+.hero{padding-block:56px 40px;position:relative;overflow:hidden}
+.hero h1{font:800 clamp(40px,8vw,92px)/.95 var(--f-display);letter-spacing:-.035em;margin:0 0 22px;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--pulse)}
+.role{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+.chip{font:500 12px/1 var(--f-mono);padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--muted);white-space:nowrap}
+.chip.live{color:var(--fg)}
+.chip.live::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--teal);margin-right:8px;box-shadow:0 0 0 0 var(--teal);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.hero p.sub{font-size:clamp(17px,2vw,21px);max-width:60ch;color:var(--muted);margin:0 0 28px}
+.hero p.sub b{color:var(--fg);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:10px;font:600 14px var(--f-body);text-decoration:none;border:1px solid var(--line);background:var(--surface);cursor:pointer;color:var(--fg)}
+.btn.p{background:var(--pulse);border-color:var(--pulse);color:var(--on-pulse)}
+.btn:hover{transform:translateY(-1px)}
+.ecg{display:block;width:100%;height:120px;margin-top:40px}
+.ecg .base{stroke:var(--line)}
+.ecg .live{stroke:var(--pulse);filter:drop-shadow(0 0 6px var(--pulse));stroke-dasharray:.16 .84;animation:sweep 4.5s linear infinite}
+@keyframes sweep{from{stroke-dashoffset:.16}to{stroke-dashoffset:-.84}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:28px}
+.stat{background:var(--surface);padding:18px 20px}
+.stat b{display:block;font:800 clamp(30px,4vw,44px)/1 var(--f-display);letter-spacing:-.02em}
+.stat span{font-size:13px;color:var(--muted)}
+
+/* panels */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px}
+.tip{position:fixed;z-index:50;pointer-events:none;background:var(--fg);color:var(--bg);font:500 12px/1.45 var(--f-mono);padding:8px 10px;border-radius:8px;max-width:260px;opacity:0;transition:opacity .1s}
+.tip.on{opacity:1}
+
+/* timeline */
+.tl-row{display:grid;gap:6px;margin-bottom:18px}
+.tl-head{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;justify-content:space-between}
+.tl-head b{font:600 15px var(--f-display)}
+.tl-head span{font:400 12px var(--f-mono);color:var(--muted)}
+.tl-track{position:relative;height:30px;border-radius:8px;background:var(--surface2);overflow:hidden}
+.tl-bar{position:absolute;top:3px;bottom:3px;border-radius:6px;cursor:default}
+.tl-bar.now{background-image:repeating-linear-gradient(135deg,transparent 0 8px,rgb(255 255 255 / .18) 8px 12px)}
+.tl-grid{position:relative;height:22px;margin-bottom:10px}
+.tl-grid span{position:absolute;top:0;font:400 11px var(--f-mono);color:var(--muted);transform:translateX(-50%)}
+.tl-grid span:first-child{transform:none}
+.tl-lines{position:absolute;inset:0;pointer-events:none}
+.tl-lines i{position:absolute;top:0;bottom:0;width:1px;background:var(--line);opacity:.6}
+.tl-wrap{position:relative}
+.tl-apps{display:flex;flex-wrap:wrap;gap:6px}
+.tl-apps .chip{font-size:11px;padding:5px 8px}
+
+/* apps */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.f{font:500 13px var(--f-body);padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.f[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.apps{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px}
+.app{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.app[hidden]{display:none}
+.app-top{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.dom{font:500 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;display:flex;gap:7px;align-items:center}
+.dom::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--c)}
+.yr{font:400 11px var(--f-mono);color:var(--muted)}
+.app p{margin:0;color:var(--muted);font-size:14.5px}
+.app ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
+.app li{margin-bottom:3px}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.stack .chip{font-size:11px;padding:5px 8px}
+.star{border-color:var(--pulse)}
+
+/* matrix */
+.scroll{overflow-x:auto}
+table.mx{border-collapse:separate;border-spacing:3px;min-width:640px;width:100%}
+.mx th{font:500 11px var(--f-mono);color:var(--muted);text-align:center;padding:4px 2px;white-space:nowrap}
+.mx th.r{text-align:right;padding-right:10px;color:var(--fg);font-size:12px}
+.mx td{height:34px;border-radius:6px;background:var(--surface2);text-align:center;font-size:11px;color:var(--bg)}
+.mx td.on{background:var(--c);cursor:default}
+.mx td.on::after{content:"●"}
+.mx td.t{background:none;font:500 12px var(--f-mono);color:var(--muted);text-align:left;padding-left:8px;width:40px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;font:400 12px var(--f-mono);color:var(--muted)}
+.legend span{display:flex;gap:7px;align-items:center}
+.legend i{width:10px;height:10px;border-radius:3px;background:var(--c)}
+
+/* signal map */
+.map{width:100%;height:auto;display:block}
+.map text{font-family:var(--f-mono);fill:var(--fg)}
+.map .mute{fill:var(--muted)}
+.map .box{fill:var(--surface2);stroke:var(--line)}
+.flow{stroke-dasharray:6 6;animation:dash 1.2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-12}}
+
+/* leadership */
+.lead{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px}
+.lead .panel{padding:20px}
+.lead h3{margin-bottom:8px;font-size:17px}
+.lead p{margin:0;color:var(--muted);font-size:14.5px}
+.hub{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:14px}
+.hubsvg{width:100%;height:auto;max-height:320px}
+.hubsvg text{font-family:var(--f-mono);fill:var(--fg);font-size:12px}
+
+/* case studies */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.case{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.case>*{min-width:0}
+.case ul{padding-left:18px;color:var(--muted);margin:14px 0 0}
+.case li{margin-bottom:6px}
+.case h3{font-size:26px}
+.viz{background:var(--surface2);border:1px solid var(--line);border-radius:14px;padding:12px}
+.viz svg{display:block;width:100%;height:auto}
+.viz text{font-family:var(--f-mono);fill:var(--fg);font-size:11px}
+.cap{font:400 11px var(--f-mono);color:var(--muted);margin-top:8px}
+@media (max-width:760px){.case{grid-template-columns:1fr}}
+
+/* education */
+.edu{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.gauge{height:8px;border-radius:99px;background:var(--surface2);margin-top:12px;overflow:hidden}
+.gauge i{display:block;height:100%;background:var(--teal);border-radius:99px}
+.edu .panel p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.big{font:800 34px/1 var(--f-display);margin-top:10px;letter-spacing:-.02em}
+
+/* contact */
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px}
+.cc{display:flex;flex-direction:column;gap:6px;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--surface);min-width:0}
+.cc span{font:500 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.cc b{font:500 15px var(--f-mono);overflow-wrap:anywhere;user-select:all}
+.cc button,.cc a{align-self:flex-start;font:500 12px var(--f-body);color:var(--blue);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
+footer{padding-block:36px 56px;border-top:1px solid var(--line);color:var(--muted);font:400 12px var(--f-mono)}
+@media (prefers-reduced-motion:reduce){.ecg .live,.flow,.chip.live::before{animation:none}.ecg .live{stroke-dasharray:none}}
+/* additions: idea-to-release, why-me, showcase */
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
+.why .panel{padding:20px}
+.why h3{font-size:17px;margin-bottom:8px}
+.why p{margin:0;color:var(--muted);font-size:14.5px}
+.why .k{font:500 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pulse);margin-bottom:10px;display:block}
+.flowx{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.flowx>*{min-width:0}
+.steps{display:grid;gap:8px}
+.step{display:grid;grid-template-columns:34px 1fr;gap:14px;text-align:left;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--fg);cursor:pointer;font:inherit}
+.step i{font:500 12px/34px var(--f-mono);font-style:normal;text-align:center;border-radius:50%;background:var(--surface2);color:var(--muted);width:34px;height:34px}
+.step b{display:block;font:600 16px var(--f-display);margin-bottom:2px}
+.step span{display:none;color:var(--muted);font-size:14px}
+.step[aria-pressed="true"]{border-color:var(--pulse)}
+.step[aria-pressed="true"] i{background:var(--pulse);color:var(--on-pulse)}
+.step[aria-pressed="true"] span{display:block}
+.phonewrap{display:flex;justify-content:center}
+.phone{width:min(100%,260px);height:auto}
+.phone text{font-family:var(--f-mono);fill:var(--fg);font-size:11px}
+.phone g.s{display:none}
+.phone g.s.on{display:block}
+@media (max-width:760px){.flowx{grid-template-columns:1fr}}
+.show{display:grid;gap:20px}
+.feat{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}
+.feat>*{min-width:0}
+.feat:nth-child(even) .viz{order:-1}
+.feat h3{font-size:28px;margin:6px 0 10px}
+.feat .story{color:var(--muted);margin:0 0 12px}
+.feat ul{padding-left:18px;margin:0 0 14px;color:var(--fg)}
+.feat li{margin-bottom:6px}
+.tag{font:500 11px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pulse)}
+@media (max-width:760px){.feat{grid-template-columns:1fr}.feat:nth-child(even) .viz{order:0}}
+.edu2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px}
+.edu2 .panel h3{margin:8px 0}
+.edu2 .panel p{margin:0;color:var(--muted);font-size:14.5px}
+</style>
+
+<header class="bar"><div class="wrap">
+  <a class="logo" href="#top">moshiur<i>.</i>rahman</a>
+  <nav aria-label="Sections"><a href="#why">Why me</a><a href="#career">Career</a><a href="#showcase">Showcase</a><a href="#apps">Products</a><a href="#stack">Stack</a><a href="#leading">Leadership</a><a href="#contact">Contact</a></nav>
+  <button class="tbtn" id="theme" aria-label="Toggle theme" title="Toggle theme">◐</button>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+  <div class="role"><span class="chip live">Team Lead at Teton since October 2026</span><span class="chip">BRAC University alumnus</span><span class="chip">Dhaka, Bangladesh</span></div>
+  <h1>I turn product ideas into <em>apps</em> people use, and I lead the team that ships them.</h1>
+  <p class="sub">I'm <b>Moshiur Rahman</b>, a Flutter engineer with 6+ years of production experience. I started as a solo developer, and today I lead the app team at Teton Private Ltd. My apps read ECG machines over USB, talk to smart scales and toy trains over Bluetooth, and track a field sales team over GPS. My consumer apps are live on the App Store and Google Play.</p>
+  <div class="cta"><a class="btn p" href="#showcase">See my best work</a><a class="btn" href="#contact">Let's talk</a><a class="btn" href="https://github.com/moshiur-rahmaan" target="_blank" rel="noopener">GitHub</a></div>
+  <div class="stats">
+    <div class="stat"><b class="num">6+</b><span>years shipping mobile apps</span></div>
+    <div class="stat"><b class="num">10+</b><span>production Flutter apps I've built</span></div>
+    <div class="stat"><b class="num">3</b><span>promotions at Teton since 2021</span></div>
+    <div class="stat"><b class="num">2</b><span>client apps I released in Japan</span></div>
+    <div class="stat"><b class="num">1</b><span>research paper I published</span></div>
+  </div>
+</div>
+
+<section style="padding-top:24px"><div class="wrap">
+  <p class="eyebrow">How I work</p>
+  <h2>From idea to release, I own every step.</h2>
+  <p class="lede">Pick a stage to see what I do there. This is the path every product of mine takes.</p>
+  <div class="panel"><div class="flowx">
+    <div class="steps" id="steps"></div>
+    <div class="phonewrap"><svg class="phone" id="phone" viewBox="0 0 240 420" role="img" aria-label="A phone illustration that changes with each stage from idea to release">
+      <rect x="10" y="6" width="220" height="408" rx="34" fill="var(--surface2)" stroke="var(--line)" stroke-width="3"/>
+      <rect x="92" y="18" width="56" height="8" rx="4" fill="var(--line)"/>
+      <g class="s" data-s="0">
+        <g fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="6 5"><rect x="32" y="50" width="176" height="36" rx="8"/><rect x="32" y="102" width="82" height="82" rx="8"/><rect x="126" y="102" width="82" height="82" rx="8"/><rect x="32" y="200" width="176" height="58" rx="8"/><rect x="32" y="352" width="176" height="40" rx="20"/></g>
+        <text x="120" y="292" text-anchor="middle" style="fill:var(--muted)">problem → user → app</text>
+        <text x="120" y="318" text-anchor="middle" style="fill:var(--pulse)">the sketch</text>
+      </g>
+      <g class="s" data-s="1">
+        <g><rect x="32" y="70" width="176" height="64" rx="12" fill="var(--blue)"/><text x="120" y="107" text-anchor="middle" style="fill:var(--bg);font-weight:500">UI · Flutter</text></g>
+        <path d="M120 140 V158" stroke="var(--muted)" stroke-width="2"/>
+        <g><rect x="32" y="164" width="176" height="64" rx="12" fill="var(--teal)"/><text x="120" y="201" text-anchor="middle" style="fill:var(--bg);font-weight:500">State · Riverpod / GetX</text></g>
+        <path d="M120 234 V252" stroke="var(--muted)" stroke-width="2"/>
+        <g><rect x="32" y="258" width="176" height="64" rx="12" fill="var(--amber)"/><text x="120" y="295" text-anchor="middle" style="fill:var(--bg);font-weight:500">Data · Firebase / MongoDB</text></g>
+        <text x="120" y="360" text-anchor="middle" style="fill:var(--muted)">the architecture</text>
+      </g>
+      <g class="s" data-s="2">
+        <rect x="26" y="44" width="188" height="44" rx="10" fill="var(--blue)"/><text x="40" y="71" style="fill:var(--bg);font-weight:500">My Health</text>
+        <rect x="26" y="102" width="88" height="88" rx="12" fill="var(--teal)"/><rect x="126" y="102" width="88" height="88" rx="12" fill="var(--violet)"/>
+        <rect x="26" y="204" width="188" height="64" rx="12" fill="var(--surface)" stroke="var(--line)"/><path d="M38 244 L70 244 L80 226 L92 258 L104 244 L200 244" fill="none" stroke="var(--pulse)" stroke-width="2.5" stroke-linejoin="round"/>
+        <rect x="26" y="352" width="188" height="42" rx="21" fill="var(--pulse)"/><text x="120" y="378" text-anchor="middle" style="fill:var(--on-pulse);font-weight:500">Continue</text>
+        <text x="120" y="320" text-anchor="middle" style="fill:var(--muted)">the build</text>
+      </g>
+      <g class="s" data-s="3">
+        <circle cx="120" cy="190" r="30" fill="var(--blue)"/><text x="120" y="194" text-anchor="middle" style="fill:var(--bg);font-weight:500">app</text>
+        <g fill="none" stroke="var(--blue)" stroke-width="2"><circle cx="120" cy="190" r="50" opacity=".7"><animate attributeName="r" values="36;96" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0" dur="2s" repeatCount="indefinite"/></circle><circle cx="120" cy="190" r="50" opacity=".7"><animate attributeName="r" values="36;96" dur="2s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0" dur="2s" begin="1s" repeatCount="indefinite"/></circle></g>
+        <rect x="52" y="322" width="136" height="34" rx="17" fill="var(--teal)"/><text x="120" y="343" text-anchor="middle" style="fill:var(--bg);font-weight:500">BLE · USB · GPS · SMS</text>
+        <text x="120" y="388" text-anchor="middle" style="fill:var(--muted)">the connection</text>
+      </g>
+      <g class="s" data-s="4">
+        <rect x="32" y="64" width="176" height="46" rx="23" fill="var(--fg)"/><text x="120" y="92" text-anchor="middle" style="fill:var(--bg);font-weight:500">App Store</text>
+        <rect x="32" y="124" width="176" height="46" rx="23" fill="var(--fg)"/><text x="120" y="152" text-anchor="middle" style="fill:var(--bg);font-weight:500">Google Play</text>
+        <circle cx="120" cy="250" r="34" fill="var(--teal)"/><path d="M104 250 L116 262 L138 238" fill="none" stroke="var(--bg)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="120" y="316" text-anchor="middle" style="fill:var(--fg);font-weight:500">live, then v1.1, v1.2 …</text>
+        <text x="120" y="340" text-anchor="middle" style="fill:var(--muted)">the release</text>
+      </g>
+    </svg></div>
+  </div></div>
+</div></section>
+
+<section id="why"><div class="wrap">
+  <p class="eyebrow">Why hire me</p>
+  <h2>A lead who still ships.</h2>
+  <p class="lede">I came up through the code. That is why I can set direction for a team and still step into the hardest integration myself.</p>
+  <div class="why">
+    <div class="panel"><span class="k">End to end</span><h3>I take products from architecture to the stores</h3><p>I have shipped 10+ production Flutter apps across health, fitness, gaming, enterprise and personal safety, and I'm comfortable owning a product alone from day one.</p></div>
+    <div class="panel"><span class="k">Hardware</span><h3>I connect apps to real devices</h3><p>BLE for toy trains and smart scales, USB for ECG machines, plus GPS, SMS and Arduino. Most app developers avoid this. I enjoy it.</p></div>
+    <div class="panel"><span class="k">Leadership</span><h3>I lead and mentor the team</h3><p>I set technical direction, coach junior developers, and coordinate with design, backend and hardware so releases land on time.</p></div>
+    <div class="panel"><span class="k">Growth</span><h3>I earn bigger scope</h3><p>I joined Teton as Software Engineer I in 2021 and became Team Lead in October 2026, with a promotion every step of the way.</p></div>
+    <div class="panel"><span class="k">Range</span><h3>I adapt to the product</h3><p>Riverpod, Provider or GetX. Firebase or MongoDB. Native code through platform channels or a custom SDK when Flutter alone is not enough.</p></div>
+    <div class="panel"><span class="k">Global</span><h3>I have shipped for Japan</h3><p>I released two apps for clients in Japan, including a fully Japanese-localized ordering app for KEIAI.</p></div>
+  </div>
+</div></section>
+
+<section id="career"><div class="wrap">
+  <p class="eyebrow">My career</p>
+  <h2>Six roles in six years, four of them at Teton.</h2>
+  <p class="lede">I started by co-founding a startup. I have been growing at Teton since 2021. My current role is at the top. Hover or tap a bar for dates.</p>
+  <div class="panel"><div class="tl-wrap" id="tl"></div></div>
+</div></section>
+
+<section id="showcase"><div class="wrap">
+  <p class="eyebrow">Showcase</p>
+  <h2>Three products I'm proudest of.</h2>
+  <p class="lede">Each one connects a physical device to a phone, and each one is live on the stores.</p>
+  <div class="show" id="show"></div>
+</div></section>
+
+<section id="apps"><div class="wrap">
+  <p class="eyebrow">All products up close</p>
+  <h2>Every app I've built, and what I did on it.</h2>
+  <p class="lede">Health devices, personal safety, enterprise field work, consumer and gaming apps, and client work for the Japanese market. Filter by domain.</p>
+  <div class="filters" id="filters" role="group" aria-label="Filter apps by domain"></div>
+  <div class="apps" id="apps-grid"></div>
+</div></section>
+
+<section id="stack"><div class="wrap">
+  <p class="eyebrow">My stack in practice</p>
+  <h2>Which technology I used in which app.</h2>
+  <p class="lede">Three state-management approaches, two hardware transports, two databases and a localized release. I pick the tools the product needs, not the ones I used last time.</p>
+  <div class="panel"><div class="scroll"><table class="mx" id="mx"></table></div>
+  <div class="legend" id="mxl"></div></div>
+  <div class="panel" style="margin-top:16px">
+    <p class="eyebrow">Core skills</p>
+    <div id="skills" style="display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))"></div>
+  </div>
+</div></section>
+
+<section id="hardware"><div class="wrap">
+  <p class="eyebrow">Integration map</p>
+  <h2>One phone, five ways to reach the real world.</h2>
+  <p class="lede">I connect proprietary devices and people to apps through Bluetooth LE, USB, GPS, SMS and cloud services. Line style shows the transport.</p>
+  <div class="panel"><svg class="map" viewBox="0 0 900 460" role="img" aria-label="Diagram of a phone app connected to a toy locomotive and smart scale over Bluetooth, ECG devices over USB, field staff over GPS, and volunteers over SMS">
+    <g stroke-width="2" fill="none">
+      <path class="flow" d="M330 190 L190 90" stroke="var(--blue)"/>
+      <path class="flow" d="M330 270 L190 370" stroke="var(--blue)"/>
+      <path d="M570 190 L710 90" stroke="var(--pulse)"/>
+      <path class="flow" d="M570 270 L710 370" stroke="var(--teal)"/>
+      <path class="flow" d="M450 320 L450 400" stroke="var(--violet)"/>
+    </g>
+    <rect x="340" y="140" width="220" height="180" rx="24" class="box" style="fill:var(--surface)"/>
+    <text x="450" y="195" text-anchor="middle" style="font-size:15px;font-weight:500">Flutter app</text>
+    <text x="450" y="218" text-anchor="middle" class="mute" style="font-size:11px">Android + iOS</text>
+    <text x="450" y="250" text-anchor="middle" class="mute" style="font-size:11px">Riverpod · Provider · GetX</text>
+    <text x="450" y="270" text-anchor="middle" class="mute" style="font-size:11px">Firebase · MongoDB</text>
+    <g><rect x="20" y="50" width="200" height="80" rx="14" class="box"/><text x="36" y="80" style="font-size:13px;font-weight:500">Teton Locomotive Set</text><text x="36" y="100" class="mute" style="font-size:11px">Bluetooth LE · Teton Train</text><text x="36" y="118" class="mute" style="font-size:11px">real-time toy control</text></g>
+    <g><rect x="20" y="330" width="200" height="80" rx="14" class="box"/><text x="36" y="360" style="font-size:13px;font-weight:500">Smart bath scales</text><text x="36" y="380" class="mute" style="font-size:11px">Bluetooth LE · Fitness Scale</text><text x="36" y="398" class="mute" style="font-size:11px">weight, visceral fat, muscle</text></g>
+    <g><rect x="680" y="50" width="200" height="80" rx="14" class="box"/><text x="696" y="80" style="font-size:13px;font-weight:500">ECG Lead 2 / 6 / 12</text><text x="696" y="100" class="mute" style="font-size:11px">USB · Teton Health</text><text x="696" y="118" class="mute" style="font-size:11px">PDF reports, subscriptions</text></g>
+    <g><rect x="680" y="330" width="200" height="80" rx="14" class="box"/><text x="696" y="360" style="font-size:13px;font-weight:500">Field sales team + HRMS</text><text x="696" y="380" class="mute" style="font-size:11px">GPS + photo · Teton HR</text><text x="696" y="398" class="mute" style="font-size:11px">live tracker, heatmap</text></g>
+    <g><rect x="340" y="400" width="220" height="50" rx="14" class="box"/><text x="450" y="421" text-anchor="middle" style="font-size:13px;font-weight:500">Volunteers within 2 km</text><text x="450" y="438" text-anchor="middle" class="mute" style="font-size:11px">SMS + chat · Shara</text></g>
+  </svg>
+  <div class="legend"><span><i style="--c:var(--blue)"></i>Bluetooth LE (dashed)</span><span><i style="--c:var(--pulse)"></i>USB (solid)</span><span><i style="--c:var(--teal)"></i>GPS + network</span><span><i style="--c:var(--violet)"></i>SMS + network</span></div></div>
+</div></section>
+
+<section id="leading"><div class="wrap">
+  <p class="eyebrow">Leadership</p>
+  <h2>I sit between the app team and everyone it depends on.</h2>
+  <p class="lede">Since October 2026 I lead Teton's app development team. I set the technical direction, mentor the developers, and keep the whole app portfolio moving.</p>
+  <div class="panel hub"><svg class="hubsvg" viewBox="0 0 800 300" role="img" aria-label="Team lead at the center, connected to design, backend, hardware and junior developers">
+    <g stroke="var(--line)" stroke-width="2"><path d="M400 150 L140 60"/><path d="M400 150 L140 240"/><path d="M400 150 L660 60"/><path d="M400 150 L660 240"/></g>
+    <circle cx="400" cy="150" r="58" fill="var(--pulse)"/><text x="400" y="146" text-anchor="middle" style="fill:var(--on-pulse);font-weight:600;font-size:13px">Me</text><text x="400" y="164" text-anchor="middle" style="fill:var(--on-pulse);font-size:11px">App team lead</text>
+    <g><rect x="40" y="36" width="200" height="48" rx="12" fill="var(--surface2)" stroke="var(--line)"/><text x="140" y="65" text-anchor="middle">Design team</text></g>
+    <g><rect x="40" y="216" width="200" height="48" rx="12" fill="var(--surface2)" stroke="var(--line)"/><text x="140" y="245" text-anchor="middle">Backend team</text></g>
+    <g><rect x="560" y="36" width="200" height="48" rx="12" fill="var(--surface2)" stroke="var(--line)"/><text x="660" y="65" text-anchor="middle">Hardware team</text></g>
+    <g><rect x="560" y="216" width="200" height="48" rx="12" fill="var(--surface2)" stroke="var(--line)"/><text x="660" y="245" text-anchor="middle">Junior developers</text></g>
+  </svg></div>
+  <div class="lead">
+    <div class="panel"><h3>Technical direction</h3><p>I choose the architecture and state management for each product, based on what it needs.</p></div>
+    <div class="panel"><h3>Mentoring</h3><p>I guide the junior developers and engineers on my team.</p></div>
+    <div class="panel"><h3>Coordination</h3><p>I'm the main point of contact between the app team and Teton's design, backend and hardware teams.</p></div>
+    <div class="panel"><h3>Ownership</h3><p>I maintain the full app portfolio and ship ongoing updates, fixes and new features.</p></div>
+  </div>
+</div></section>
+
+<section id="edu"><div class="wrap">
+  <p class="eyebrow">Education and research</p>
+  <h2>BRAC University alumnus, with a published paper.</h2>
+  <div class="edu2" style="margin-top:24px">
+    <div class="panel"><p class="mono" style="color:var(--muted);font-size:12px">2015 – 2019</p><h3>B.Sc. in Computer Science and Engineering</h3><p>BRAC University, Dhaka.</p></div>
+    <div class="panel star"><p class="mono" style="color:var(--pulse);font-size:12px">Published · IEM-ICDC 2020, India</p><h3>Automated Soil Testing System using Colorimetry and Arduino</h3><p>My first hardware-and-software project to reach publication.</p></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <p class="eyebrow">Contact</p>
+  <h2>Looking for someone to lead your app team? Let's talk.</h2>
+  <p class="lede">I'm happy to share references on request.</p>
+  <div class="contact" id="contact-grid"></div>
+</div></section>
+</main>
+<footer><div class="wrap">Md. Moshiur Rahman · Flutter · BLE · USB · Team leadership · Dhaka, Bangladesh</div></footer>
+<div class="tip" id="tip"></div>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s);
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+
+/* theme */
+const root=document.documentElement;
+$('#theme').addEventListener('click',()=>{
+  const dark=root.dataset.theme?root.dataset.theme==='dark':!matchMedia('(prefers-color-scheme: light)').matches;
+  root.dataset.theme=dark?'light':'dark';
+});
+
+/* tooltip */
+const tip=$('#tip');
+function bindTip(node,text){
+  const move=e=>{tip.style.left=Math.min(e.clientX+14,innerWidth-270)+'px';tip.style.top=(e.clientY+14)+'px'};
+  node.addEventListener('pointerenter',e=>{tip.innerHTML=text;tip.classList.add('on');move(e)});
+  node.addEventListener('pointermove',move);
+  node.addEventListener('pointerleave',()=>tip.classList.remove('on'));
+}
+
+/* idea to release */
+(function(){
+  const st=[
+   ['Idea','I start with the problem and the person: a toy train a child can drive from a phone, an ECG machine that needs a companion app, a field team that has to clock in on the road.'],
+   ['Architecture','I choose the stack the product needs. Riverpod for Teton Health, GetX for Shara, Provider for the Fitness Scale, with Firebase or MongoDB behind them.'],
+   ['Build','I build in Flutter for Android and iOS from one codebase, and drop to native code through platform channels or a custom SDK when I need to.'],
+   ['Connect','I wire the app to the real world: Bluetooth LE, USB, GPS or SMS. This is where proprietary devices become a product people can use.'],
+   ['Ship and iterate','I release to the App Store and Google Play, then keep shipping updates, fixes and features. For Japan, I localize the whole app.']
+  ];
+  const box=$('#steps'),groups=[...document.querySelectorAll('#phone g.s')];
+  let cur=0,timer=null;
+  function show(i){cur=i;[...box.children].forEach((b,j)=>b.setAttribute('aria-pressed',j===i));groups.forEach(g=>g.classList.toggle('on',+g.dataset.s===i))}
+  st.forEach((s,i)=>{const b=el('button','step',`<i>${i+1}</i><div><b>${s[0]}</b><span>${s[1]}</span></div>`);b.type='button';b.onclick=()=>{clearInterval(timer);show(i)};box.appendChild(b)});
+  show(0);
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches)timer=setInterval(()=>show((cur+1)%st.length),4500);
+})();
+
+/* career timeline (newest first) */
+const Y0=2020,Y1=2027;
+const pos=(y,m)=>(y+m/12-Y0)/(Y1-Y0)*100;
+const roles=[
+ {t:'Team Lead',c:'Teton Private Ltd.',s:[2026,9],e:[2027,0],col:'var(--pulse)',d:'Oct 2026 – Present',w:'I lead the app team.',apps:['Teton HR','Full app portfolio'],now:true},
+ {t:'Senior Software Engineer',c:'Teton Private Ltd.',s:[2025,0],e:[2026,9],col:'var(--violet)',d:'Jan 2025 – Sep 2026',w:'I built the ECG and safety apps.',apps:['Teton Health','Shara SOS']},
+ {t:'Software Engineer II',c:'Teton Private Ltd.',s:[2023,0],e:[2025,0],col:'var(--blue)',d:'Jan 2023 – Dec 2024',w:'I built the fitness SDK and meal app.',apps:['Teton Fitness Scale','Teton Meal App']},
+ {t:'Software Engineer I',c:'Teton Private Ltd.',s:[2021,3],e:[2023,0],col:'var(--teal)',d:'Apr 2021 – Dec 2022',w:'I built the BLE integration for the toy train and R&D prototypes.',apps:['Teton Train','R&D prototypes']},
+ {t:'Mobile Application Engineer',c:'XOR Geek',s:[2020,8],e:[2021,4],col:'var(--amber)',d:'Sep 2020 – Apr 2021',w:'I shipped two Japan-market apps.',apps:['KEIAI Order App','Classic Golf App']},
+ {t:'Co-Founder & Developer',c:'Hashtech360',s:[2020,0],e:[2020,9],col:'var(--amber)',d:'Jan 2020 – Sep 2020',w:'I handled mobile development from idea to launch.',apps:[]}
+];
+(function(){
+  const box=$('#tl');
+  const grid=el('div','tl-grid');
+  for(let y=Y0;y<Y1;y++){const s=el('span',null,y);s.style.left=pos(y,0)+'%';grid.appendChild(s)}
+  box.appendChild(grid);
+  const rows=el('div');rows.style.position='relative';
+  const lines=el('div','tl-lines');
+  for(let y=Y0+1;y<Y1;y++){const i=el('i');i.style.left=pos(y,0)+'%';lines.appendChild(i)}
+  rows.appendChild(lines);
+  roles.forEach(r=>{
+    const row=el('div','tl-row');
+    row.innerHTML=`<div class="tl-head"><b>${r.t} <span style="color:var(--muted);font-family:var(--f-body);font-weight:400;font-size:13px">· ${r.c}</span></b><span>${r.d}</span></div>`;
+    const tr=el('div','tl-track');const b=el('div','tl-bar'+(r.now?' now':''));
+    const l=pos(...r.s),w=pos(...r.e)-l;b.style.left=l+'%';b.style.width=w+'%';b.style.background=r.col;
+    bindTip(b,`<b>${r.t}</b><br>${r.c}<br>${r.d}<br>${r.w}`);
+    tr.appendChild(b);row.appendChild(tr);
+    if(r.apps.length){const a=el('div','tl-apps');r.apps.forEach(x=>a.appendChild(el('span','chip',x)));row.appendChild(a)}
+    rows.appendChild(row);
+  });
+  box.appendChild(rows);
+})();
+
+/* showcase */
+const feats=[
+ {tag:'Showcase 1 · Health · 2025–26',n:'Teton Health',st:'Teton makes ECG devices (Lead 2, Lead 6 and Lead 12) and they needed a companion app people could use every day. I built it around a direct USB connection to the device.',
+  b:['USB integration with the ECG device','ECG PDF generation, download and sharing','Subscription-based access','Broader health-metric tracking'],s:['Riverpod','USB','MongoDB','Flutter'],
+  v:()=>{const pts=[];for(let x=0;x<400;x+=100)pts.push([x,80],[x+18,80],[x+26,74],[x+34,80],[x+44,80],[x+48,86],[x+54,28],[x+60,110],[x+66,80],[x+84,80],[x+92,70],[x+100,80]);const d='M'+pts.map(p=>p.join(' ')).join(' L');
+   return `<svg viewBox="0 0 400 190" role="img" aria-label="Stylized ECG report"><rect x="0" y="0" width="400" height="190" rx="10" fill="var(--surface)"/><g stroke="var(--line)">${[20,50,80,110,140].map(y=>`<path d="M0 ${y}H400"/>`).join('')}</g><path d="${d}" fill="none" stroke="var(--pulse)" stroke-width="2.5" stroke-linejoin="round"/><text x="12" y="14" style="fill:var(--muted)">ECG REPORT · PDF</text><g><rect x="12" y="156" width="110" height="24" rx="12" fill="var(--blue)"/><text x="67" y="172" text-anchor="middle" style="fill:var(--bg)">Download</text><rect x="130" y="156" width="90" height="24" rx="12" fill="var(--teal)"/><text x="175" y="172" text-anchor="middle" style="fill:var(--bg)">Share</text></g></svg><div class="cap">Illustrative report layout. No patient data.</div>`}},
+ {tag:'Showcase 2 · Fitness · 2023–24',n:'Teton Fitness Scale',st:'I started this as a Flutter SDK for Android and iOS that talks to Teton\'s smart bath scales, then folded it into the consumer app.',
+  b:['Bluetooth LE connection to the scales','Body weight plus visceral fat, body water and muscle mass','Provider for state, Firebase for data','Packaged as an SDK first, then merged into the app'],s:['Provider','BLE','Firebase','SDK'],
+  v:()=>{const m=[['Weight',72,'var(--blue)'],['Visceral fat',38,'var(--pulse)'],['Body water',58,'var(--teal)'],['Muscle mass',46,'var(--violet)']];
+   return `<svg viewBox="0 0 400 190" role="img" aria-label="Illustrative body metric bars"><rect width="400" height="190" rx="10" fill="var(--surface)"/>${m.map((r,i)=>`<text x="16" y="${40+i*38}">${r[0]}</text><rect x="120" y="${27+i*38}" width="260" height="14" rx="7" fill="var(--surface2)"/><rect x="120" y="${27+i*38}" width="${r[1]*2.6}" height="14" rx="7" fill="${r[2]}"/>`).join('')}<text x="16" y="14" style="fill:var(--muted)">BODY METRICS OVER BLUETOOTH</text></svg><div class="cap">Illustrative layout. Bar lengths are not real measurements.</div>`}},
+ {tag:'Showcase 3 · Gaming and toys · 2021–22',n:'Teton Train',st:'A physical toy locomotive and a game, controlled together. I built the Bluetooth link, and I rebuilt the game from Unity into Flutter with multiple levels and scenarios.',
+  b:['BLE integration with the Teton Locomotive Set','Real-time control of the toy','Kids drive the real train and the in-app train at once','Unity first, then rebuilt in Flutter'],s:['BLE','Unity','Flutter'],
+  v:()=>`<svg viewBox="0 0 400 190" role="img" aria-label="Phone connected by Bluetooth to a toy train"><rect width="400" height="190" rx="10" fill="var(--surface)"/><rect x="26" y="34" width="66" height="122" rx="12" fill="var(--surface2)" stroke="var(--line)" stroke-width="2"/><rect x="36" y="50" width="46" height="56" rx="6" fill="var(--teal)" opacity=".6"/><path d="M102 98 H282" stroke="var(--blue)" stroke-width="2" class="flow"/><circle r="5" fill="var(--blue)"><animateMotion dur="1.8s" repeatCount="indefinite" path="M102 98 H282"/></circle><text x="160" y="84" style="fill:var(--blue)">Bluetooth LE</text><rect x="290" y="82" width="86" height="42" rx="8" fill="var(--amber)"/><rect x="346" y="66" width="30" height="24" rx="4" fill="var(--amber)"/><circle cx="312" cy="130" r="8" fill="var(--surface)" stroke="var(--fg)" stroke-width="2"/><circle cx="354" cy="130" r="8" fill="var(--surface)" stroke="var(--fg)" stroke-width="2"/><path d="M270 138 H396" stroke="var(--line)" stroke-width="3"/></svg>`}
+];
+(function(){
+  const box=$('#show');
+  feats.forEach(f=>{
+    const p=el('div','panel feat');
+    p.innerHTML=`<div><span class="tag">${f.tag}</span><h3>${f.n}</h3><p class="story">${f.st}</p><ul>${f.b.map(x=>'<li>'+x+'</li>').join('')}</ul><div class="stack" style="display:flex;flex-wrap:wrap;gap:6px">${f.s.map(x=>'<span class="chip">'+x+'</span>').join('')}</div></div><div class="viz">${f.v()}</div>`;
+    box.appendChild(p);
+  });
+})();
+
+/* all products */
+const DOM={health:['Health','var(--pulse)'],safety:['Safety','var(--violet)'],ent:['Enterprise','var(--blue)'],cons:['Consumer & gaming','var(--teal)'],jp:['Japan clients','var(--amber)'],tool:['Side projects','var(--muted)']};
+const apps=[
+ {n:'Teton HR',d:'ent',y:'2026',p:'I built a dedicated app for Teton\'s field sales team so they can clock in from outside the office.',b:['Clock-in with photo capture and GPS location verification','Live location tracker with a heatmap of movement on an interactive map','Attendance records, dealer registration form and list, activities log','Integrated with Teton\'s main HRMS'],s:['Flutter','GPS','Maps','HRMS']},
+ {n:'Teton Health',d:'health',y:'2025–26',star:1,p:'I built the companion app for Teton\'s ECG devices Lead 2, Lead 6 and Lead 12.',b:['USB connection to the device','ECG PDF generation, download and sharing','Subscription access and health-metric tracking'],s:['Riverpod','USB','MongoDB']},
+ {n:'Shara – Emergency SOS',d:'safety',y:'2025–26',p:'I built a personal-safety app that works with and without internet.',b:['Offline: an SMS-triggered SOS sent through a server','Online: alerts volunteers within 2 km and trusted contacts','Full chat system with multimedia sharing'],s:['GetX','SMS','MongoDB']},
+ {n:'Teton Fitness Scale',d:'cons',y:'2023–24',star:1,p:'I built it as a Flutter SDK for Android and iOS, then folded it into the consumer app.',b:['Bluetooth link to Teton smart bath scales','Weight, visceral fat, body water, muscle mass'],s:['Provider','BLE','Firebase','SDK']},
+ {n:'Teton Meal App',d:'cons',y:'2023–24',p:'I developed the meal planning and ordering experience for Teton\'s consumer product line.',b:[],s:['Flutter']},
+ {n:'Teton Train',d:'cons',y:'2021–22',star:1,p:'I connected a real toy locomotive to a game, and rebuilt the game from Unity into Flutter.',b:['BLE integration with the physical Teton Locomotive Set','Controls the toy and the in-app train at once'],s:['BLE','Unity','Flutter']},
+ {n:'KEIAI Order App',d:'jp',y:'2020–21',p:'I fully localized this ordering app for the Japanese market. It was a Japan-only App Store and Play Store release.',b:['Product search, cart and order history'],s:['Localization','Flutter']},
+ {n:'Classic Golf App',d:'jp',y:'2020–21',p:'I developed this golf app for Japan with in-app support chat and push notifications.',b:['Zendesk chat SDK','Pushwoosh push notifications'],s:['Zendesk','Pushwoosh']},
+ {n:'ChatApp',d:'tool',y:'Project',p:'I built a fast one-to-one chat app with real-time delivery.',b:['Inbox that resurfaces the most active conversations','Polished UI throughout'],s:['Firebase']},
+ {n:'Algorithm Visualizer',d:'tool',y:'Project',p:'I built an interactive tool that visualizes sorting and search algorithms.',b:['Adjustable speed controls'],s:['Visualization']}
+];
+(function(){
+  const f=$('#filters'),g=$('#apps-grid');
+  const names=[['all','All ('+apps.length+')'],...Object.entries(DOM).map(([k,v])=>[k,v[0]])];
+  names.forEach(([k,l])=>{const b=el('button','f',l);b.type='button';b.setAttribute('aria-pressed',k==='all');b.onclick=()=>{[...f.children].forEach(x=>x.setAttribute('aria-pressed',x===b));[...g.children].forEach(c=>c.hidden=!(k==='all'||c.dataset.d===k))};f.appendChild(b)});
+  apps.forEach(a=>{
+    const c=el('article','app'+(a.star?' star':''));c.dataset.d=a.d;
+    c.innerHTML=`<div class="app-top"><span class="dom" style="--c:${DOM[a.d][1]}">${DOM[a.d][0]}</span><span class="yr">${a.star?'★ Showcase · ':''}${a.y}</span></div><h3>${a.n}</h3><p>${a.p}</p>${a.b.length?'<ul>'+a.b.map(x=>'<li>'+x+'</li>').join('')+'</ul>':''}<div class="stack">${a.s.map(x=>'<span class="chip">'+x+'</span>').join('')}</div>`;
+    g.appendChild(c);
+  });
+})();
+
+/* matrix */
+(function(){
+  const cols=['Teton HR','Health','Shara','Fitness Scale','Train','KEIAI','Golf','ChatApp'];
+  const rows=[
+   ['Riverpod','var(--blue)',[1]],['Provider','var(--blue)',[3]],['GetX','var(--blue)',[2]],
+   ['BLE','var(--teal)',[3,4]],['USB','var(--teal)',[1]],['GPS / maps','var(--teal)',[0]],['SMS','var(--teal)',[2]],
+   ['Firebase','var(--amber)',[3,7]],['MongoDB','var(--amber)',[1,2]],
+   ['Japanese i18n','var(--violet)',[5]],['Unity','var(--violet)',[4]],['Zendesk · Pushwoosh','var(--violet)',[6]]
+  ];
+  const t=$('#mx');
+  let h='<thead><tr><th></th>'+cols.map(c=>`<th>${c}</th>`).join('')+'<th></th></tr></thead><tbody>';
+  rows.forEach(r=>{h+=`<tr><th class="r">${r[0]}</th>`+cols.map((c,i)=>r[2].includes(i)?`<td class="on" style="--c:${r[1]}" data-t="${r[0]} in ${c}"></td>`:'<td></td>').join('')+`<td class="t num">${r[2].length}×</td></tr>`});
+  t.innerHTML=h+'</tbody>';
+  t.querySelectorAll('td.on').forEach(td=>bindTip(td,td.dataset.t));
+  $('#mxl').innerHTML=[['State management','var(--blue)'],['Connectivity','var(--teal)'],['Data','var(--amber)'],['Platform extras','var(--violet)']].map(x=>`<span><i style="--c:${x[1]}"></i>${x[0]}</span>`).join('');
+  const sk=[['Languages','Dart, Java, Kotlin, Swift, Python, C#'],['Mobile','Flutter (advanced), native Android, iOS, platform channels, custom Flutter SDKs'],['State management','Riverpod, Provider, GetX'],['Connectivity & hardware','BLE, USB, Arduino, IoT device integration'],['Backend & data','MongoDB, Firebase, REST APIs, MySQL, SQLite, Django'],['Game development','Unity, Flame, PyGame'],['Tooling','Git, LaTeX, HTML/CSS/JS, localization/i18n']];
+  $('#skills').innerHTML=sk.map(s=>`<div><div class="mono" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">${s[0]}</div><div style="display:flex;flex-wrap:wrap;gap:6px">${s[1].split(', ').map(x=>'<span class="chip" style="padding:6px 9px">'+x+'</span>').join('')}</div></div>`).join('');
+})();
+
+/* contact */
+(function(){
+  const items=[['Email','moshiurrahmaan.dev@gmail.com','copy'],['Phone / WhatsApp','+880 1776-525840','copy'],['LinkedIn','linkedin.com/in/moshiur-rahmaan','https://www.linkedin.com/in/moshiur-rahmaan'],['GitHub','github.com/moshiur-rahmaan','https://github.com/moshiur-rahmaan']];
+  const g=$('#contact-grid');
+  items.forEach(([l,v,a])=>{
+    const c=el('div','cc',`<span>${l}</span><b>${v}</b>`);
+    if(a==='copy'){const b=el('button',null,'Copy');b.type='button';b.onclick=()=>{const done=()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1500)};try{navigator.clipboard.writeText(v).then(done,()=>{b.textContent='Select the text above'})}catch(e){b.textContent='Select the text above'}};c.appendChild(b)}
+    else{const k=el('a',null,'Open');k.href=a;k.target='_blank';k.rel='noopener';c.appendChild(k)}
+    g.appendChild(c);
+  });
+})();
+})();
+</script>
+
+</html>

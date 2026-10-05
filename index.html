@@ -4,32 +4,20 @@
 <title>Moshiur Rahman Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <style>
 /* Layout: a device-lab dashboard. Pulse-line hero, then sections that behave like instrument panels (timeline, matrix, signal map, case-study tabs). */
+/* NEON FUTURISTIC THEME (dark only) */
 :root{
-  --bg:#0a0f1c; --surface:#121a2c; --surface2:#182238; --line:#26324e;
-  --fg:#e8edf8; --muted:#95a2c0;
-  --pulse:#ff6b81; --blue:#5aa9ff; --teal:#3ed6b5; --amber:#ffc15a; --violet:#a78bfa;
-  --on-pulse:#1a0a10;
-  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
-  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --bg:#05070f; --surface:#0a1020; --surface2:#101a33; --line:#1d2a4d;
+  --fg:#e8f0ff; --muted:#8fa3cc;
+  --pulse:#ff3df2; --blue:#00e5ff; --teal:#22ffb0; --amber:#ffc15a; --violet:#7c5cff;
+  --on-pulse:#05070f;
+  --neon:linear-gradient(90deg,#00e5ff,#7c5cff 55%,#ff3df2);
+  --f-display:"Space Grotesk","Segoe UI",system-ui,sans-serif;
+  --f-body:"Inter","Segoe UI",system-ui,sans-serif;
   --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
   color-scheme:dark;
-}
-@media (prefers-color-scheme: light){
-  :root:not([data-theme="dark"]){
-    --bg:#f3f5fb; --surface:#ffffff; --surface2:#e9edf7; --line:#d2daec;
-    --fg:#0e1730; --muted:#4f5d7e;
-    --pulse:#d42a49; --blue:#1d6bcf; --teal:#0a8a74; --amber:#a56600; --violet:#6a40d6;
-    --on-pulse:#ffffff; color-scheme:light;
-  }
-}
-:root[data-theme="light"]{
-  --bg:#f3f5fb; --surface:#ffffff; --surface2:#e9edf7; --line:#d2daec;
-  --fg:#0e1730; --muted:#4f5d7e;
-  --pulse:#d42a49; --blue:#1d6bcf; --teal:#0a8a74; --amber:#a56600; --violet:#6a40d6;
-  --on-pulse:#ffffff; color-scheme:light;
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--f-body);margin:0;padding-inline:0}
@@ -211,20 +199,87 @@ footer{padding-block:36px 56px;border-top:1px solid var(--line);color:var(--mute
 .edu2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px}
 .edu2 .panel h3{margin:8px 0}
 .edu2 .panel p{margin:0;color:var(--muted);font-size:14.5px}
+
+/* ===== neon overrides ===== */
+html{background:var(--bg)}
+body{background:transparent;position:relative}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+   radial-gradient(60% 50% at 8% 0%,rgba(0,229,255,.16),transparent 70%),
+   radial-gradient(50% 45% at 100% 20%,rgba(255,61,242,.12),transparent 70%),
+   radial-gradient(60% 50% at 50% 100%,rgba(124,92,255,.12),transparent 70%),
+   linear-gradient(rgba(0,229,255,.045) 1px,transparent 1px) 0 0/48px 48px,
+   linear-gradient(90deg,rgba(0,229,255,.045) 1px,transparent 1px) 0 0/48px 48px;}
+::selection{background:#7c5cff;color:#fff}
+.bar{background:rgba(5,7,15,.72);border-bottom:1px solid transparent;border-image:linear-gradient(90deg,rgba(0,229,255,.5),rgba(124,92,255,.4),rgba(255,61,242,.5)) 1}
+.logo{font-family:var(--f-mono);font-weight:700;font-size:15px;letter-spacing:.02em}
+.logo i{background:var(--neon);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bar nav a{transition:color .2s,text-shadow .2s}
+.bar nav a:hover{color:var(--blue);text-shadow:0 0 12px rgba(0,229,255,.7)}
+.eyebrow{color:var(--blue);text-shadow:0 0 14px rgba(0,229,255,.45)}
+.eyebrow::before{content:"// ";color:var(--pulse)}
+h2{background:linear-gradient(90deg,#fff 0%,#cfe9ff 60%,#b7a8ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+h3{letter-spacing:-.01em}
+.hero{padding-block:64px 24px}
+.hero-grid{display:grid;grid-template-columns:1.5fr .5fr;gap:36px;align-items:center}
+.hero h1{font-size:clamp(36px,6.4vw,76px);line-height:1.02;letter-spacing:-.035em}
+.hero h1 em{background:var(--neon);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(124,92,255,.45))}
+.hero-phone{display:flex;justify-content:center}
+.hero-phone svg{width:min(100%,230px);height:auto;filter:drop-shadow(0 0 26px rgba(124,92,255,.35))}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-phone{display:none}}
+.chip{background:rgba(10,16,32,.7);border-color:#1d2a4d}
+.chip.live{border-color:rgba(34,255,176,.5);box-shadow:0 0 18px rgba(34,255,176,.12)}
+.btn{background:rgba(10,16,32,.7);transition:transform .15s,box-shadow .2s,border-color .2s}
+.btn:hover{border-color:var(--blue);box-shadow:0 0 22px rgba(0,229,255,.28)}
+.btn.p{background:var(--neon);border:0;color:#05070f;box-shadow:0 0 26px rgba(124,92,255,.45)}
+.btn.p:hover{box-shadow:0 0 36px rgba(255,61,242,.55)}
+.ecg{margin-top:34px}
+.ecg .base{stroke:#1d2a4d;fill:none;stroke-width:2;vector-effect:non-scaling-stroke}
+.ecg .live{stroke:url(#ng);fill:none;stroke-width:3;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 7px rgba(0,229,255,.8))}
+.stats{background:#1d2a4d;border-color:#1d2a4d;box-shadow:0 0 40px rgba(0,229,255,.07)}
+.stat{background:rgba(10,16,32,.9)}
+.stat b{background:var(--neon);-webkit-background-clip:text;background-clip:text;color:transparent}
+.panel,.app,.cc,.step{background:linear-gradient(160deg,rgba(16,26,51,.82),rgba(10,16,32,.86));backdrop-filter:blur(6px);transition:border-color .25s,box-shadow .25s,transform .25s}
+.panel:hover,.app:hover,.cc:hover{border-color:rgba(0,229,255,.55);box-shadow:0 0 28px rgba(0,229,255,.12)}
+.why .panel:hover,.lead .panel:hover{transform:translateY(-3px)}
+.why .k{color:var(--blue);text-shadow:0 0 12px rgba(0,229,255,.5)}
+.star{border-color:rgba(255,61,242,.6);box-shadow:0 0 24px rgba(255,61,242,.12)}
+.tag{color:var(--pulse);text-shadow:0 0 12px rgba(255,61,242,.5)}
+.step[aria-pressed="true"]{border-color:var(--blue);box-shadow:0 0 22px rgba(0,229,255,.2)}
+.step[aria-pressed="true"] i{background:var(--neon);color:#05070f}
+.f{background:rgba(10,16,32,.7)}
+.f[aria-pressed="true"]{background:var(--neon);color:#05070f;border-color:transparent;box-shadow:0 0 18px rgba(124,92,255,.4)}
+.tl-track{background:#0d1530}
+.tl-bar{box-shadow:0 0 14px currentColor;filter:saturate(1.15)}
+.mx td.on{box-shadow:0 0 12px var(--c)}
+.mx td.on::after{color:#05070f}
+.viz{background:rgba(5,7,15,.6)}
+.cc a,.cc button{color:var(--blue)}
+.cc b{color:#fff}
+.tip{background:#0a1020;color:var(--fg);border:1px solid var(--blue);box-shadow:0 0 18px rgba(0,229,255,.3)}
+footer{border-top:1px solid #1d2a4d}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 </style>
 
 <header class="bar"><div class="wrap">
   <a class="logo" href="#top">moshiur<i>.</i>rahman</a>
   <nav aria-label="Sections"><a href="#why">Why me</a><a href="#career">Career</a><a href="#showcase">Showcase</a><a href="#apps">Products</a><a href="#stack">Stack</a><a href="#leading">Leadership</a><a href="#contact">Contact</a></nav>
-  <button class="tbtn" id="theme" aria-label="Toggle theme" title="Toggle theme">◐</button>
 </div></header>
 
 <main id="top">
 <div class="wrap hero">
+  <div class="hero-grid">
+  <div>
   <div class="role"><span class="chip live">Team Lead at Teton since October 2026</span><span class="chip">BRAC University alumnus</span><span class="chip">Dhaka, Bangladesh</span></div>
-  <h1>I turn product ideas into <em>apps</em> people use, and I lead the team that ships them.</h1>
+  <h1>I build apps that talk to the <em>real world</em>, and lead the team that ships them.</h1>
   <p class="sub">I'm <b>Moshiur Rahman</b>, a Flutter engineer with 6+ years of production experience. I started as a solo developer, and today I lead the app team at Teton Private Ltd. My apps read ECG machines over USB, talk to smart scales and toy trains over Bluetooth, and track a field sales team over GPS. My consumer apps are live on the App Store and Google Play.</p>
   <div class="cta"><a class="btn p" href="#showcase">See my best work</a><a class="btn" href="CV_Moshiur_Rahman.pdf" target="_blank" rel="noopener">View my CV</a><a class="btn" href="#contact">Let's talk</a><a class="btn" href="https://github.com/moshiur-rahmaan" target="_blank" rel="noopener">GitHub</a></div>
+  </div>
+  <div class="hero-phone"><svg viewBox="0 0 140 240" role="img" aria-label="Phone with a heartbeat line"><defs><linearGradient id="hp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00e5ff"/><stop offset=".5" stop-color="#7c5cff"/><stop offset="1" stop-color="#ff3df2"/></linearGradient></defs><g fill="none" stroke="url(#hp)" stroke-width="2.5"><rect x="10" y="8" width="120" height="224" rx="22"/><rect x="52" y="18" width="36" height="5" rx="2.5" fill="#00e5ff" stroke="none"/><circle cx="70" cy="76" r="26" stroke="#7c5cff"/><circle cx="70" cy="76" r="11" fill="#ff3df2" stroke="none"><animate attributeName="opacity" values="1;.3;1" dur="2.4s" repeatCount="indefinite"/></circle><path d="M24 150 L50 150 L60 122 L76 188 L90 136 L100 150 L116 150" stroke="#00e5ff"><animate attributeName="opacity" values="1;.35;1" dur="2.4s" repeatCount="indefinite"/></path><rect x="36" y="206" width="68" height="6" rx="3" fill="#7c5cff" stroke="none"/></g></svg></div>
+  </div>
+  <svg class="ecg" id="ecg" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="ng" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#00e5ff"/><stop offset=".5" stop-color="#7c5cff"/><stop offset="1" stop-color="#ff3df2"/></linearGradient></defs><path class="base" id="ecg1" pathLength="1"/><path class="live" id="ecg2" pathLength="1"/></svg>
   <div class="stats">
     <div class="stat"><b class="num">6+</b><span>years shipping mobile apps</span></div>
     <div class="stat"><b class="num">10+</b><span>production Flutter apps I've built</span></div>
@@ -282,7 +337,7 @@ footer{padding-block:36px 56px;border-top:1px solid var(--line);color:var(--mute
 
 <section id="why"><div class="wrap">
   <p class="eyebrow">Why hire me</p>
-  <h2>A lead who still ships.</h2>
+  <h2>I lead from the codebase, not just the roadmap.</h2>
   <p class="lede">I came up through the code. That is why I can set direction for a team and still step into the hardest integration myself.</p>
   <div class="why">
     <div class="panel"><span class="k">End to end</span><h3>I take products from architecture to the stores</h3><p>I have shipped 10+ production Flutter apps across health, fitness, gaming, enterprise and personal safety, and I'm comfortable owning a product alone from day one.</p></div>
@@ -398,12 +453,17 @@ footer{padding-block:36px 56px;border-top:1px solid var(--line);color:var(--mute
 const $=(s,r=document)=>r.querySelector(s);
 const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
 
-/* theme */
-const root=document.documentElement;
-$('#theme').addEventListener('click',()=>{
-  const dark=root.dataset.theme?root.dataset.theme==='dark':!matchMedia('(prefers-color-scheme: light)').matches;
-  root.dataset.theme=dark?'light':'dark';
-});
+
+
+/* ecg + reveal */
+(function(){
+  let d='',y=60;for(let x=0;x<1000;x+=200){d+=(x?' L':'M')+`${x} ${y} L${x+36} ${y} L${x+44} ${y-8} L${x+54} ${y} L${x+64} ${y} L${x+70} ${y+8} L${x+78} ${y-52} L${x+88} ${y+34} L${x+96} ${y} L${x+124} ${y} L${x+140} ${y-14} L${x+156} ${y} L${x+200} ${y}`}
+  $('#ecg1').setAttribute('d',d);$('#ecg2').setAttribute('d',d);
+  const els=document.querySelectorAll('section .wrap > *, .stats');
+  if(!('IntersectionObserver' in window))return;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+  els.forEach(e=>{e.classList.add('rv');io.observe(e)});
+})();
 
 /* tooltip */
 const tip=$('#tip');

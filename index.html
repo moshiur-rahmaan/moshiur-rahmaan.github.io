@@ -224,7 +224,7 @@ footer{padding-block:36px 56px;border-top:1px solid var(--line);color:var(--mute
   <div class="role"><span class="chip live">Team Lead at Teton since October 2026</span><span class="chip">BRAC University alumnus</span><span class="chip">Dhaka, Bangladesh</span></div>
   <h1>I turn product ideas into <em>apps</em> people use, and I lead the team that ships them.</h1>
   <p class="sub">I'm <b>Moshiur Rahman</b>, a Flutter engineer with 6+ years of production experience. I started as a solo developer, and today I lead the app team at Teton Private Ltd. My apps read ECG machines over USB, talk to smart scales and toy trains over Bluetooth, and track a field sales team over GPS. My consumer apps are live on the App Store and Google Play.</p>
-  <div class="cta"><a class="btn p" href="#showcase">See my best work</a><a class="btn" href="#contact">Let's talk</a><a class="btn" href="https://github.com/moshiur-rahmaan" target="_blank" rel="noopener">GitHub</a></div>
+  <div class="cta"><a class="btn p" href="#showcase">See my best work</a><a class="btn" href="CV_Moshiur_Rahman.pdf" target="_blank" rel="noopener">View my CV</a><a class="btn" href="#contact">Let's talk</a><a class="btn" href="https://github.com/moshiur-rahmaan" target="_blank" rel="noopener">GitHub</a></div>
   <div class="stats">
     <div class="stat"><b class="num">6+</b><span>years shipping mobile apps</span></div>
     <div class="stat"><b class="num">10+</b><span>production Flutter apps I've built</span></div>
@@ -533,12 +533,12 @@ const apps=[
 
 /* contact */
 (function(){
-  const items=[['Email','moshiurrahmaan.dev@gmail.com','copy'],['Phone / WhatsApp','+880 1776-525840','copy'],['LinkedIn','linkedin.com/in/moshiur-rahmaan','https://www.linkedin.com/in/moshiur-rahmaan'],['GitHub','github.com/moshiur-rahmaan','https://github.com/moshiur-rahmaan']];
+  const items=[['Email','moshiurrahmaan.dev@gmail.com','copy'],['Phone / WhatsApp','+880 1776-525840','copy'],['LinkedIn','linkedin.com/in/moshiur-rahmaan','https://www.linkedin.com/in/moshiur-rahmaan'],['GitHub','github.com/moshiur-rahmaan','https://github.com/moshiur-rahmaan'],['Résumé','CV_Moshiur_Rahman.pdf','CV_Moshiur_Rahman.pdf']];
   const g=$('#contact-grid');
   items.forEach(([l,v,a])=>{
     const c=el('div','cc',`<span>${l}</span><b>${v}</b>`);
     if(a==='copy'){const b=el('button',null,'Copy');b.type='button';b.onclick=()=>{const done=()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1500)};try{navigator.clipboard.writeText(v).then(done,()=>{b.textContent='Select the text above'})}catch(e){b.textContent='Select the text above'}};c.appendChild(b)}
-    else{const k=el('a',null,'Open');k.href=a;k.target='_blank';k.rel='noopener';c.appendChild(k)}
+    else{const k=el('a',null,l==='Résumé'?'View PDF':'Open');k.href=a;k.target='_blank';k.rel='noopener';c.appendChild(k)}
     g.appendChild(c);
   });
 })();
